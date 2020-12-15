@@ -8,12 +8,6 @@ from netCDF4 import num2date
 import pandas as pd
 import csv
 import requests
-import matplotlib.pyplot as plt
-from mpl_toolkits.basemap import Basemap, cm
-import matplotlib as mpl
-import matplotlib.patches as patches
-import matplotlib.colors as mcolors
-from matplotlib.patches import Polygon
 
 
 receive = requests.get('http://berkeleyearth.lbl.gov/air-quality/data/Current_Map.nc')
