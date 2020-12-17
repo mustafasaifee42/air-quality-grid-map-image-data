@@ -45,7 +45,7 @@ for i in range(0,len(airQ_list[0])):
                 vMax = round(airQ_list[0][i][k], 2)
             array.append(d)
 
-plt.figure(figsize=(50, 25), dpi=300)
+plt.figure(figsize=(25, 12.5), dpi=300)
 plt.axis("off")
 m = Basemap(projection='merc',llcrnrlat=-85,urcrnrlat=85,\
             llcrnrlon=-180,urcrnrlon=180,lat_ts=20,resolution='c')
@@ -79,5 +79,6 @@ for el in array:
     lons = [ round(el['lon'] - 0.05,2), round(el['lon'] - 0.05,2), round(el['lon'] + 0.05,2), round(el['lon'] + 0.05,2) ]
     draw_screen_poly1(lats, lons, m, el['value'])
 
+print("Saving Map...")
 
 plt.savefig('airQualityHealthMap.png', transparent=True, bbox_inches='tight',pad_inches=0)
