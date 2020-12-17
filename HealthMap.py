@@ -45,7 +45,7 @@ for i in range(0,len(airQ_list[0])):
                 vMax = round(airQ_list[0][i][k], 2)
             array.append(d)
 
-plt.figure(figsize=(25, 12.5), dpi=300)
+plt.figure(figsize=(50, 25), dpi=300)
 plt.axis("off")
 m = Basemap(projection='merc',llcrnrlat=-85,urcrnrlat=85,\
             llcrnrlon=-180,urcrnrlon=180,lat_ts=20,resolution='c')
