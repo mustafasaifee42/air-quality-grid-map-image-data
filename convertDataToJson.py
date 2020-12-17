@@ -50,5 +50,6 @@ for i in range(0,len(airQ_list[0])):
             obj["data"].append(d)
 
 print("Saving JSON...")
+
 with open('airQualityData.json', 'w') as f: # writing JSON object
     json.dump(obj, f, indent=4)
