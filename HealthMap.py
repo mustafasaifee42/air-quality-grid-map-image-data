@@ -1,13 +1,25 @@
 import matplotlib.pyplot as plt
+from netCDF4 import Dataset
+import math
 from mpl_toolkits.basemap import Basemap, cm
+import numpy as np
 import matplotlib as mpl
 from matplotlib.patches import Polygon
-import json
 
-with open('airQualityData.json') as f:
-    data = json.load(f)
+nc = Dataset('mapDataUpdated.nc', 'r')
 
-plt.figure(figsize=(50, 25), dpi=300)
+
+latitudes = nc.variables['latitude'][:]
+longitudes = nc.variables['longitude'][:]
+airQ = nc.variables['pm25'][:]
+np_lat = np.array(latitudes)
+np_lon = np.array(longitudes)
+np_temp = np.array(airQ)
+airQ_list = np_temp.tolist()
+i=0
+k=0
+
+plt.figure(figsize=(10, 5), dpi=144)
 plt.axis("off")
 m = Basemap(projection='merc',llcrnrlat=-85,urcrnrlat=85,\
             llcrnrlon=-180,urcrnrlon=180,lat_ts=20,resolution='c')
@@ -38,10 +50,16 @@ def draw_screen_poly1( lats, lons, m, val):
 
 print("Creating Map...")
 
-for el in data["data"]:
-    lats = [ round(el['lat'] - 0.05,2), round(el['lat'] + 0.05,2), round(el['lat'] + 0.05,2), round(el['lat'] - 0.05,2) ]
-    lons = [ round(el['lon'] - 0.05,2), round(el['lon'] - 0.05,2), round(el['lon'] + 0.05,2), round(el['lon'] + 0.05,2) ]
-    draw_screen_poly1(lats, lons, m, el['value'])
+
+for i in range(0,len(airQ_list[0])):
+    for k in range(0,len(airQ_list[0][i])):
+        if math.isnan(airQ_list[0][i][k]):
+            x = 0
+        else:
+            print(round(np_lat[i].item(),2), round(np_lon[k].item(),2))
+            lats = [ round(np_lat[i].item() - 0.05,2), round(np_lat[i].item() + 0.05,2), round(np_lat[i].item() + 0.05,2), round(np_lat[i].item() - 0.05,2) ]
+            lons = [ round(np_lon[k].item() - 0.05,2), round(np_lon[k].item() - 0.05,2), round(np_lon[k].item() + 0.05,2), round(np_lon[k].item() + 0.05,2) ]
+            draw_screen_poly1(lats, lons, m, round(airQ_list[0][i][k], 2))
 
 print("Saving Map...")
 
