@@ -61,7 +61,7 @@ def get_continuous_cmap(hex_list, float_list=None):
         cdict[col] = col_list
     cmp = mcolors.LinearSegmentedColormap('my_cmp', segmentdata=cdict, N=256)
     return cmp
-    
+
 norm = mpl.colors.Normalize(vmin=0, vmax=300)
 hex_list = ['#009966','#ffde33','#ff9933','#cc0033','#660099','#7e0023','#0d0000']
 float_list=[0, norm(12), norm(35.5), norm(55.5), norm(150.5), norm(250.5), 1]
@@ -92,7 +92,7 @@ print("Ellapsed Time =", now - now1)
 
 print("Saving Map...")
 
-plt.savefig('airQualitySequentialMap1.png', transparent=True, bbox_inches='tight',pad_inches=0)
+plt.savefig('airQualitySequentialMap.png', transparent=True, bbox_inches='tight',pad_inches=0)
 now2 = datetime.now()
 
 current_time = now2.strftime("%H:%M:%S")

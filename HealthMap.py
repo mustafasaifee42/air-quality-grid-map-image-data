@@ -78,7 +78,7 @@ print("Ellapsed Time =", now - now1)
 
 print("Saving Map 1...")
 
-plt.savefig('airQualityHealthMap1.png', transparent=True, bbox_inches='tight',pad_inches=0)
+plt.savefig('airQualityHealthMap.png', transparent=True, bbox_inches='tight',pad_inches=0)
 #plt.show()
 now2 = datetime.now()
 
